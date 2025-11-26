@@ -1,4 +1,4 @@
-book_path = "./books/frankenstein.txt"
+
 
 def get_book_text(path):
     with open(path, "r", encoding="utf-8") as f:
@@ -13,8 +13,10 @@ def get_num_words(text):
 def count_characters(text):
     char_counts = {}
     for char in text.lower():
-        if char in char_counts:
-            char_counts[char] += 1
-        else:
-            char_counts[char] = 1
-    return char_counts
+        if char.isalpha():
+            if char in char_counts:
+                char_counts[char] += 1
+            else:
+                char_counts[char] = 1
+    sorted_counts = sorted(char_counts.items(), key=lambda item: item[1], reverse=True)
+    return sorted_counts
